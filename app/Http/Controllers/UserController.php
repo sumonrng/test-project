@@ -9,7 +9,11 @@ class UserController extends Controller
 {
     public function addUser(){
         $users = DB::table('users')
-        ->get();
+        ->where('id',1)
+        ->update([
+            'name'=>'Samiul Islam Rafi'
+        ]);
+        // ->get();
         // ->find(1);
         return $users;
     }
