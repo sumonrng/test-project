@@ -32,7 +32,9 @@ Route::get('/',function(){
 Route::get('/member/{id}',[MemberController::class,'index']);
 Route::get('/student',[StudentController::class,'showStudent']);
 Route::get('/update',[StudentController::class,'updateUser']);
-Route::get('/showUser',[UserController::class,'addUser']);
+Route::get('/addUser',[UserController::class,'addUser']);
+Route::get('/delete/{id}',[UserController::class,'deleteUser'])->name('delete.user');
+Route::get('/showdata',[UserController::class,'showUser'])->name('showdata');
 
 // Route::view('/post','post');
 // Route::get('/post/{id}',function(string $id){
