@@ -9,7 +9,15 @@ class UserController extends Controller
 {
     public function showUser(){
         $users = DB::table('users')
-                ->get();
+                // ->paginate(4);
+                // ->fragment('user');
+                // ->appends(['sort'=>'search']);
+                ->orderBy('id')
+                ->cursorPaginate(4);
+                // ->get();
+                // ->simplePaginate(4);
+                // ->limit(3)
+                // ->get();
 
         return view('showuser',['data'=>$users]);
     }

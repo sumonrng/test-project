@@ -22,6 +22,9 @@
         tr:nth-child(even) {
           background-color: #dddddd;
         }
+        nav .w-5{
+            display: none;
+        }
         </style>
 </head>
 <body>
@@ -29,28 +32,35 @@
         <div class="row">
             <div class="col-12">
                 <a href="{{Route('addUser')}}" class="btn btn-primary">Add User</a>
-    <table>
-        <tr>
-            <th>SL</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Age</th>
-            <th>City</th>
-            <th>Update</th>
-            <th>Delete</th>
-        </tr>
-        @foreach ($data as $key=>$user)
-        <tr>
-            <td>{{$user->id}}</td>
-            <td>{{$user->name}}</td>
-            <td>{{$user->email}}</td>
-            <td>{{$user->age}}</td>
-            <td>{{$user->city}}</td>
-            <td><a href="{{route('showUpdate',$user->id)}}"class="btn btn-primary">Update</a></td>
-            <td><a href="{{route('delete.user',$user->id)}}"class="btn btn-danger">Delete</a></td>
-        </tr>
-        @endforeach
-    </table>
+                <table>
+                    <tr>
+                        <th>SL</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>City</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                    @foreach ($data as $key=>$user)
+                    <tr>
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->age}}</td>
+                        <td>{{$user->city}}</td>
+                        <td><a href="{{route('showUpdate',$user->id)}}"class="btn btn-primary">Update</a></td>
+                        <td><a href="{{route('delete.user',$user->id)}}"class="btn btn-danger">Delete</a></td>
+                    </tr>
+                    @endforeach
+                </table>
+                <div class="mt-5">
+                    {{-- {{$data->links('pagination::bootstrap-5')}} --}}
+                    {{$data->links()}}
+                </div>
+                <div>
+                    {{-- Count: {{$data->lastPage()}} --}}
+                </div>
             </div>
         </div>
     </div>
