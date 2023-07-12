@@ -32,9 +32,14 @@ Route::get('/',function(){
 Route::get('/member/{id}',[MemberController::class,'index']);
 Route::get('/student',[StudentController::class,'showStudent']);
 Route::get('/update',[StudentController::class,'updateUser']);
-Route::get('/addUser',[UserController::class,'addUser']);
-Route::get('/delete/{id}',[UserController::class,'deleteUser'])->name('delete.user');
-Route::get('/showdata',[UserController::class,'showUser'])->name('showdata');
+Route::controller(UserController::class)->group(function(){
+    Route::post('/addUser','addUser')->name('newUser');
+    Route::get('/delete/{id}','deleteUser')->name('delete.user');
+    Route::get('/showdata','showUser')->name('showdata');
+    Route::put('/updateuser/{id}','updateUser')->name('updateUser');
+    Route::get('/updateuser/{id}','showUpdate')->name('showUpdate');
+});
+Route::view('/addUser','adduser')->name('addUser');
 
 // Route::view('/post','post');
 // Route::get('/post/{id}',function(string $id){

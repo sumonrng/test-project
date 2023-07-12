@@ -13,17 +13,18 @@ class UserController extends Controller
 
         return view('showuser',['data'=>$users]);
     }
-    public function addUser(){
+    public function addUser(Request $req){
         $users = DB::table('users')
         ->insert([
-            'name'=>'Samiul Islam Rafi',
-            'email'=>'rafiraian2b@gmail.com',
-            'age'=>24,
-            'city'=>'Rangpur'
+            'name'=>$req->username,
+            'email'=>$req->email,
+            'age'=>$req->age,
+            'city'=>$req->city
         ]);
 
         if($users){
-            echo "Data successfully Added";
+            return redirect()->route('showdata');
+            //echo "Data successfully Added";
         }else{
             echo "Data Added Unseccessfull";
         }
@@ -62,6 +63,23 @@ class UserController extends Controller
         //     echo "Data Added Unseccessfull";
         // }
     }
+    public function updateUser(Request $req,int $id){
+        $users = DB::table('users')
+                ->where('id',$id)
+                ->update([
+                    'name'=>$req->username,
+                    'email'=>$req->email,
+                    'age'=>$req->age,
+                    'city'=>$req->city
+                ]);
+            //return view('updateuser',['data'=>$users]);
+            return redirect()->route('showdata');
+    }
+    public function showUpdate(string $id){
+        $users = DB::table('users')->find($id);
+        return view('updateuser',['data'=>$users]);
+        //return $users;
+    }
     public function deleteUser(string $id){
         $users = DB::table('users')
                 // ->truncate();
@@ -69,7 +87,6 @@ class UserController extends Controller
                 ->delete();
                 
         if($users){
-            echo "Successfully Deleted";
             return redirect()->route('showdata');
         }
         
