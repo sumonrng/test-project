@@ -34,7 +34,7 @@ class UserController extends Controller
             return redirect()->route('showdata');
             //echo "Data successfully Added";
         }else{
-            echo "Data Added Unseccessfull";
+            echo "Data Added Unsuccessfully";
         }
         //$users = DB::table('users')
         //->where('id',1)
@@ -49,7 +49,7 @@ class UserController extends Controller
             // [
             //     'age'=>20
             // ]
-       
+
         // ->insertGetId([
         //     'name'=>'Rafsan-Al-Raian',
         //     'email'=>'rafsanbro@gmail.com',
@@ -68,7 +68,7 @@ class UserController extends Controller
         // if($users){
         //     echo "Data successfully Added";
         // }else{
-        //     echo "Data Added Unseccessfull";
+        //     echo "Data Added Unsuccessfully";
         // }
     }
     public function updateUser(Request $req,int $id){
@@ -93,11 +93,11 @@ class UserController extends Controller
                 // ->truncate();
                 ->where('id',$id)
                 ->delete();
-                
+
         if($users){
             return redirect()->route('showdata');
         }
-        
+
     }
-    
+
 }
