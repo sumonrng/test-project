@@ -31,6 +31,7 @@ Route::get('/',function(){
 // });
 Route::get('/member/{id}',[MemberController::class,'index']);
 Route::get('/student',[StudentController::class,'showStudent']);
+Route::get('/joinuser',[StudentController::class,'showUser']);
 Route::get('/update',[StudentController::class,'updateUser']);
 Route::controller(UserController::class)->group(function(){
     Route::post('/addUser','addUser')->name('newUser');

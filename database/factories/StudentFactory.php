@@ -17,12 +17,11 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'stu_id'=>431,
+            'stu_id'=>fake()->numberBetween(1,10),
             'name'=>fake()->name(),
             'age'=>fake()->numberBetween(15,20),
             'email'=>fake()->email(),
-            'mobile'=>fake()->phoneNumber(),
-            'city'=>fake()->city()
+            'mobile'=>fake()->phoneNumber()
         ];
     }
 }
