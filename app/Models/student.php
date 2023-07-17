@@ -9,4 +9,7 @@ class student extends Model
 {
     use HasFactory;
     //public $timestamps = false;
+    public function getCity(){
+        return $this->hasOne('App\Models\City','stu_id');
+    }
 }

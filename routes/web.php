@@ -30,6 +30,7 @@ Route::get('/',function(){
 //     return view('first',['name'=>$name]);
 // });
 Route::get('/member/{id}',[MemberController::class,'index']);
+// Route::get('/student/{cid}',[StudentController::class,'showStudent']);
 Route::get('/student',[StudentController::class,'showStudent']);
 Route::get('/joinuser',[StudentController::class,'showUser']);
 Route::get('/update',[StudentController::class,'updateUser']);

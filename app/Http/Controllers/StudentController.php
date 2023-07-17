@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\student;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -67,28 +69,19 @@ class StudentController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function showStudent(){
-        $users = DB::table('students')
+        $user = student::with('getCity')->get();
+            // return $user;
+            return view('joinuser',compact('user'));
+
+
+        //$users = DB::table('students')
         // ->sum('age');
         // ->count('age');
         // ->max('age');
         // ->min('age');
         // ->average('age');
-        ->avg('age');
+        //->avg('age');
         // ->latest()
         // ->oldest()
         // ->inRandomOrder()
@@ -116,6 +109,6 @@ class StudentController extends Controller
         // ->orWhere('city','=','Mayertview')
         // ->orWhere('email','like','C%')
         // ->get();
-        return $users;
+        //return $users;
     }
 }

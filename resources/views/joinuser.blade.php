@@ -41,7 +41,7 @@
                 <td>{{$data->age}}</td>
                 <td>{{$data->email}}</td>
                 <td>{{$data->mobile}}</td>
-                <td>{{$data->city}}</td>
+                <td>{{$data['getCity']->city}}</td>
             </tr>
             @endforeach
         </table>

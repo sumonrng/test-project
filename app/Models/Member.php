@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
+    // protected $primaryKey = 'id';
+    // protected $foreignKey = 'stu_id';
+
 }
