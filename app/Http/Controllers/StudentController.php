@@ -10,31 +10,72 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
-    public function updateUser(){
+    public function index(){
         $users = DB::table('students')
-            ->insertGetId(
-                [
-                'stu_id'=>431,
-                'name'=>'Samiul Islam Rafi',
-                'age'=>10,
-                'email'=>'rafiraian2bb@gmail.com',
-                'mobile'=>'01751400362',
-                'city'=>'Rangpur',
-                'created_at'=>now(),
-                'updated_at'=>now()
-                ]
+                // ->selectRaw('name,age,email,mobile')
+                // ->selectRaw('count(*) as student_id,age')
+                ->select(DB::raw('sum(age) as student_id'),'age')
+                // ->orderByDesc('age')
+                // ->orderByRaw('age DESC')
+                ->groupByRaw('age')
+                // ->orderByRaw('age')
+                // ->whereRaw('name like ?',['g%'])
+                ->get();
+                // ->toSql();
+        return $users;
+        // $users = DB::select('select name,age,email,mobile as contact from students where age > ? and name like ?',[17,"E%"]);
+        // $users = DB::insert("insert into students (stu_id,name,age,email,mobile) values(?,?,?,?,?)",[2,'Tahmidul',40,'sumonmti498@gmail.com','01787909190']);
+        // $users = DB::update("update students set email='rafi@gmamil.com' where id=?",[11]);
+        // $users = DB::delete('delete from students where id=?',[11]);
+        // dd($users);
+        // return $users;
+    }
+    public function InvestReturng(){
+		$dateR=date("d", strtotime("+1 day"));
+        $current_date=date("Y-m-d");
+		// $dateRf=date("Y-m-d", strtotime("-7 days"));
+		// $strayTr=date("Y-m-01", strtotime($dateRf));
+		// $EndyTr=date("Y-m-t", strtotime($dateRf));
+        $dateRE=date('d');
+        return dd($dateR);
+		// $datE=$mysqli->query("SELECT * FROM `upgrade` WHERE DATE(`date`)<='".$dateR."' AND `auto_id`='0'");
+		// while($allInvest=mysqli_fetch_assoc($datE)){
+
+		// 	$Rewty=mysqli_fetch_assoc($mysqli->query("SELECT SUM(curent_bal) AS totla FROM `game_return_test` WHERE `user`='".$allInvest['user']."' AND `play_id`='".$allInvest['serial']."' AND `month_add`='0' AND DATE(count_date) BETWEEN '".$strayTr."' AND '".$EndyTr."'"));
+		// 	$thiskMonthret=$Rewty['totla'];
+
+		// 	$retMOnth=date("m", strtotime($dateRf));
+		// 	$Rewty21=mysqli_num_rows($mysqli->query("SELECT `serial` FROM `daily_return_per` WHERE `return_month`='".$retMOnth."' "));
+		// 	$Rewty2=mysqli_fetch_assoc($mysqli->query("SELECT SUM(return_percent) AS totlarE FROM `daily_return_per` WHERE `return_month`='".$retMOnth."'"));
+		// 	$thisMonth=$Rewty2['totlarE']/$Rewty21;
+		// 	//echo $allInvest['serial'] ." >> $totalInvest >> $returnMonth >> $thisMonth >> $dayMonth >> $returnDay >> $gapDates >> $thiskMonthret<br/>";
+		// }
+	}
+    // public function updateUser(){
+    //     $users = DB::table('students')
+    //         ->insertGetId(
+    //             [
+    //             'stu_id'=>431,
+    //             'name'=>'Samiul Islam Rafi',
+    //             'age'=>10,
+    //             'email'=>'rafiraian2bb@gmail.com',
+    //             'mobile'=>'01751400362',
+    //             'city'=>'Rangpur',
+    //             'created_at'=>now(),
+    //             'updated_at'=>now()
+    //             ]
                 //['email'],
                 //['mobile']
-        );
-        return $users;
+        // );
+        // return $users;
 
             // if($users){
             //     echo "Data Insert Successfolly";
             // }else{
             //     echo "Data not added";
             // }
-    }
-    public function showUser(){
+    //}
+    //public function showUser(){
         // $user = DB::table('students')
         //         ->join('cities',function(JoinClause $join){
         //             $join->on('students.stu_id','=','cities.cid')
@@ -62,17 +103,17 @@ class StudentController extends Controller
                 // ->get();
     // return $user;
     // return view('joinuser',compact('user'));
-    }
+    //}
 
 
 
 
 
 
-    public function showStudent(){
-        $user = student::with('getCity')->get();
-            // return $user;
-            return view('joinuser',compact('user'));
+    // public function showStudent(){
+    //     $user = student::with('getCity')->get();
+    //         // return $user;
+    //         return view('joinuser',compact('user'));
 
 
         //$users = DB::table('students')
@@ -110,5 +151,5 @@ class StudentController extends Controller
         // ->orWhere('email','like','C%')
         // ->get();
         //return $users;
-    }
+    //}
 }

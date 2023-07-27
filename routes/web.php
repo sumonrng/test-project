@@ -4,6 +4,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::get('/member/{id}',[MemberController::class,'index']);
 Route::get('/student',[StudentController::class,'showStudent']);
 Route::get('/joinuser',[StudentController::class,'showUser']);
 Route::get('/update',[StudentController::class,'updateUser']);
+Route::get('/data',[StudentController::class,'index']);
+Route::get('/test',[StudentController::class,'InvestReturng']);
 Route::controller(UserController::class)->group(function(){
     Route::post('/addUser','addUser')->name('newUser');
     Route::get('/delete/{id}','deleteUser')->name('delete.user');
@@ -42,6 +45,8 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/updateuser/{id}','showUpdate')->name('showUpdate');
 });
 Route::view('/addUser','adduser')->name('addUser');
+Route::view('/register','register');
+Route::post('/register',[DogController::class,'index'])->name('register');
 
 // Route::view('/post','post');
 // Route::get('/post/{id}',function(string $id){
